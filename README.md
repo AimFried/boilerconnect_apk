@@ -14,12 +14,8 @@ Lien : https://www.github.com/aimfried/boilerconnect_api
 ## :bookmark_tabs: Installation
 
 Télécharger le dépot. <br >
-Dans le dossier, utiliser ces commandes :
+Générer votre APK après avoir correctement configurer votre application Mobile.
 
-```bash
- npm i
- npm run dev
-```
 ## 🛠️ Configuration
 
 - Ne pas oubliez de changer l'url de l'API dans les fichiers suivant : <br >
