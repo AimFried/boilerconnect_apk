@@ -1,7 +1,6 @@
 <div align="center">
- ![alt text](http://boilerconnect.ddns.net/logo.png)
+   <img src="http://boilerconnect.ddns.net/logo.png" alt="BoilerConnect Logo" width="200" height="200">
 </div>
-
 # BoilerConnect - Version Mobile (Android)
 
 <strong>Application Mobile</strong> permettant de réalisé un rapport d'intervention et de pouvoir le stocker sur un serveur.
