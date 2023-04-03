@@ -16,10 +16,12 @@ import android.widget.Toast;
 import com.example.boilerconnect.Model.DAO.ReportManager;
 import com.example.boilerconnect.Model.Entity.Report;
 
+import java.text.SimpleDateFormat;
+import java.util.regex.Pattern;
+
 public class AddReport extends AppCompatActivity {
 
     private Button btnSaveReport;
-    private Button btnCancelReport;
     private ReportManager reportmanager;
     private EditText serialNumber;
     private EditText dateIntervention;
@@ -57,6 +59,9 @@ public class AddReport extends AppCompatActivity {
         Spinner spinnerModele = (Spinner) findViewById(R.id._spinner_modele);
         String[] optionsModele = {"Modèle", "Gaz classique", "Gaz basse température", "Gaz à condensation", "Gaz hybride"};
 
+        Spinner spinnerIntervener = (Spinner) findViewById(R.id._spinner_intervener);
+        String[] optionsIntervener = {"Technicien","Merlin Soucy", "Didier Rocher", "Jean Gladu", "Guillaume Brasseur" , "Lucas Lamontagne"};
+
         ArrayAdapter<String> adapterMarque = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, optionsMarque);
         adapterMarque.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -67,7 +72,17 @@ public class AddReport extends AppCompatActivity {
         adapterModele.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerModele.setAdapter(adapterModele);
 
+        ArrayAdapter<String> adapterIntervener = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, optionsIntervener);
+        adapterIntervener.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerIntervener.setAdapter(adapterIntervener);
+
         setTitle("Nouvelle intervention");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(System.currentTimeMillis());
+        dateIntervention.setText(date);
+        dateEntryService.setText(date);
 
             reportmanager = new ReportManager(this);
 
@@ -105,14 +120,50 @@ public class AddReport extends AppCompatActivity {
                 } else {
 
                 }
-                System.out.println(s.length());
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-                // Called after the text is changed
-                // You can perform your action here, such as updating a list or calling a method
+            public void afterTextChanged(Editable s) { }
+        });
+
+        dateEntryService.addTextChangedListener(new TextWatcher() {
+            int countOldValue;
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                setCountOldValue(s.length());
+                System.out.println(s.length());
             }
+
+            public void setCountOldValue(int countOldValue) {
+                this.countOldValue = countOldValue;
+            }
+
+            public int getCountOldValue() {
+                return countOldValue;
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length() == getCountOldValue() + 1) {
+                    if(s.length() == 2) {
+                        dateEntryService.setText(dateEntryService.getText().toString() + "/");
+                        dateEntryService.setSelection(dateEntryService.getText().length());
+                    }
+                    if(s.length() == 5) {
+                        dateEntryService.setText(dateEntryService.getText().toString() + "/");
+                        dateEntryService.setSelection(dateEntryService.getText().length());
+                    }
+                    if(s.length() == 10) {
+                        dateEntryService.setText(dateEntryService.getText());
+                        dateEntryService.setSelection(dateEntryService.getText().length());
+                    }
+                } else {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
         });
 
 
@@ -120,32 +171,69 @@ public class AddReport extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //Ouvre l'acces a la base de données
-                reportmanager.open();
+                if(validSpinnerInput() && validTextInput() && validDateInput() && validTimeInput()) {
+                    reportmanager.open();
 
-                //Crée un nouveau contact et peuple l'objet avec les valeurs des champs de l'activité
-                Report newReport = new Report(0,"");
-                newReport.setName(name.getText().toString());
-                newReport.setSurname(surname.getText().toString());
-                newReport.setAddress(address.getText().toString());
-                newReport.setBrand(spinnerMarque.getSelectedItem().toString());
-                newReport.setBoiler(spinnerModele.getSelectedItem().toString());
-                newReport.setDateEntryService(dateEntryService.getText().toString());
-                newReport.setDateIntervention(dateIntervention.getText().toString());
-                newReport.setSerialNumber(serialNumber.getText().toString());
-                newReport.setDescription(description.getText().toString());
-                newReport.setDuration(duration.getText().toString());
+                    Report newReport = new Report(0,"");
+                    newReport.setIntervener(spinnerIntervener.getSelectedItem().toString());
+                    newReport.setName(name.getText().toString());
+                    newReport.setSurname(surname.getText().toString());
+                    newReport.setAddress(address.getText().toString());
+                    newReport.setBrand(spinnerMarque.getSelectedItem().toString());
+                    newReport.setBoiler(spinnerModele.getSelectedItem().toString());
+                    newReport.setDateEntryService(dateEntryService.getText().toString());
+                    newReport.setDateIntervention(dateIntervention.getText().toString());
+                    newReport.setSerialNumber(serialNumber.getText().toString());
+                    newReport.setDescription(description.getText().toString());
+                    newReport.setDuration(duration.getText().toString());
 
-                //Ajoute le contact à la base de données
-                reportmanager.addReport(newReport);
+                    reportmanager.addReport(newReport);
 
-                // Ferme l'acces a la base
-                reportmanager.close();
+                    reportmanager.close();
 
-                // Ferme l'activité une fois l'ajout terminé.
-                Toast.makeText(AddReport.this, "Intervention enregistrée", Toast.LENGTH_SHORT).show();
-                AddReport.this.finish();
+                    Toast.makeText(AddReport.this, "Intervention enregistrée", Toast.LENGTH_SHORT).show();
+                    AddReport.this.finish();
+                } else {
+                    Toast.makeText(AddReport.this, "Votre saisie est incorrect !", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            private boolean validTimeInput() {
+                if(duration.getText().toString() != "") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            private boolean validDateInput() {
+                String DATE_PATTERN = "^(((0[1-9]|[12]\\d|3[01])\\/(0[13578]|1[02])\\/((19|[2-9]\\d)\\d{2}))|((0[1-9]|[12]\\d|30)\\/(0[13456789]|1[012])\\/((19|[2-9]\\d)\\d{2}))|((0[1-9]|1\\d|2[0-8])\\/02\\/((19|[2-9]\\d)\\d{2}))|(29\\/02\\/((1[6-9]|[2-9]\\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$";
+                Pattern pattern = Pattern.compile(DATE_PATTERN);
+               if(pattern.matcher(dateIntervention.getText().toString()).matches()
+                       && pattern.matcher(dateEntryService.getText().toString()).matches()
+                        && dateIntervention.getText().toString() != "" && dateEntryService.getText().toString() != "") {
+                   return true;
+               } else {
+                   return false;
+               }
+            }
+
+            private boolean validTextInput() {
+                if(name.getText().toString() != "" && surname.getText().toString() != "" && address.getText().toString() != "" && serialNumber.getText().toString() != "" && description.getText().toString() != "") {
+                    System.out.println("oui");
+                    return true;
+                }  else {
+                    return false;
+                }
+            }
+
+            private boolean validSpinnerInput() {
+                if(spinnerIntervener.getSelectedItem().toString() != "Technicien" && spinnerMarque.getSelectedItem().toString() != "Marque" && spinnerModele.getSelectedItem().toString() != "Modèle") {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         });
-        }
     }
+}

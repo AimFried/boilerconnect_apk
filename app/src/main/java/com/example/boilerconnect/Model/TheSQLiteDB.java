@@ -22,17 +22,12 @@ public class TheSQLiteDB extends SQLiteOpenHelper {
 
         @Override
         public void onCreate(SQLiteDatabase sqLiteDatabase) {
-            // Création de la base de données
-            // on exécute ici les requêtes de création des tables
-            sqLiteDatabase.execSQL(ReportManager.CREATE_TABLE_CONTACT); // création table
+            sqLiteDatabase.execSQL(ReportManager.CREATE_TABLE);
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-            // Mise à jour de la base de données
-            // méthode appelée sur incrémentation de DATABASE_VERSION
-            // on peut faire ce qu'on veut ici, comme recréer la base :
             onCreate(sqLiteDatabase);
         }
 
-    } // class MySQLite
+    }

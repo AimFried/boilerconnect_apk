@@ -4,6 +4,7 @@ public class Report {
 
     private int id;
 
+    private String intervener;
     private String name;
     private String surname;
     private String address;
@@ -20,10 +21,11 @@ public class Report {
     private String duration;
 
 
-    public Report(int id, String name, String surname, String address, String brand,
+    public Report(int id, String intervener ,String name, String surname, String address, String brand,
                   String boiler, String dateEntryService, String dateIntervention,
                   String serialNumber, String description, String duration) {
         this.id = id;
+        this.intervener = intervener;
         this.name = name;
         this.surname = surname;
         this.address = address;
@@ -39,6 +41,7 @@ public class Report {
     public Report(int id, String name) {
         this.id = id;
         this.name = name;
+        this.intervener = "";
         this.surname = "";
         this.address = "";
         this.brand = "";
@@ -58,6 +61,9 @@ public class Report {
         this.id = id;
     }
 
+    public String getIntervener() { return  intervener; }
+
+    public  void setIntervener(String intervener) { this.intervener = intervener; }
     public String getName() {
         return name;
     }

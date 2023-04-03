@@ -209,7 +209,8 @@
         <LinearLayout
             android:id="@+id/date_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="horizontal"
             android:paddingBottom="5dp"
             tools:ignore="DuplicateIds">
@@ -238,6 +239,28 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/_spinner_intervener"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/date_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            tools:ignore="DuplicateIds">
+
             <com.google.android.material.textfield.TextInputLayout
 
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -261,14 +284,6 @@
                     android:inputType="datetime" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp">
 
             <com.google.android.material.textfield.TextInputLayout
 

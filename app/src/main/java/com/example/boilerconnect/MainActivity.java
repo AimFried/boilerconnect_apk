@@ -58,13 +58,10 @@ public class MainActivity extends AppCompatActivity implements ReportListAdapter
 
         btnUpdateDatabase = (Button) findViewById(R.id._btn_update_database);
 
-        // On créer un ContactManager pour pouvoir récupérer la liste de contact
         reportmanager = new ReportManager(this);
 
-        // on se connecte à la base de données
         reportmanager.open();
 
-        // On récupère la liste de contacts contenus dans la table Contact
         reportList = reportmanager.getReports();
 
         setTitle(reportList.stream().count() + " interventions en cours");
@@ -76,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements ReportListAdapter
             btnUpdateDatabase.setEnabled(true);
         }
 
-        // on ferme la connexion
         reportmanager.close();
 
         RecyclerView recyclerView = findViewById(R.id.MyrvData);
@@ -84,17 +80,13 @@ public class MainActivity extends AppCompatActivity implements ReportListAdapter
 
         adapter = new ReportListAdapter(this, reportList);
 
-        // On ajoute la gestion des evenements sur le clic
         adapter.setClickListener(this);
 
-        // Puis on lie notre adapteur au RecyclerView
         recyclerView.setAdapter(adapter);
 
-        // On ajoute un trait de séparation entre les éléments (pour faciliter la lecture et le clic
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),1);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        //on lie les elements d'interface aux objets correspondants
         btnAddReport = (Button) findViewById(R.id._btn_update_report);
 
         btnAddReport.setOnClickListener(new View.OnClickListener() {
@@ -119,12 +111,10 @@ public class MainActivity extends AppCompatActivity implements ReportListAdapter
     protected void onRestart() {
         super.onRestart();
 
-        //On vide la liste
         reportList.clear();
 
         reportmanager.open();
 
-        //Puis on réajoute tout le contenu de la liste de la base
         reportList.addAll(reportmanager.getReports());
 
         setTitle(reportList.stream().count() + " interventions en cours");
@@ -137,8 +127,6 @@ public class MainActivity extends AppCompatActivity implements ReportListAdapter
 
         reportmanager.close();
 
-        // indique a l'adapter que les données ont été mise à jour,
-        // et que le contenu de recyclerView doit être réaffiché.
         adapter.notifyDataSetChanged();
     }
 
@@ -154,10 +142,10 @@ public class MainActivity extends AppCompatActivity implements ReportListAdapter
         JSONArray itemStorage = new JSONArray();
         JSONObject object = new JSONObject();
         try {
-            //input your API parameters
             int i;
             for(i = 0;i<reportList.stream().count();i++) {
                 JSONObject item = new JSONObject();
+                item.put("intervener",reportList.get(i).getIntervener());
                 item.put("name",reportList.get(i).getName());
                 item.put("surname",reportList.get(i).getSurname());
                 item.put("address",reportList.get(i).getAddress());
@@ -166,8 +154,13 @@ public class MainActivity extends AppCompatActivity implements ReportListAdapter
                 item.put("dateEntryService",reportList.get(i).getDateEntryService());
                 item.put("dateIntervention",reportList.get(i).getDateIntervention());
                 item.put("serialNumber",reportList.get(i).getSerialNumber());
-                item.put("description",reportList.get(i).getDescription());
+                if(reportList.get(i).getDescription().isEmpty()){
+                    item.put("description","Rien à signaler");
+                } else {
+                    item.put("description",reportList.get(i).getDescription());
+                }
                 item.put("duration",reportList.get(i).getDuration());
+                System.out.println(item);
                 itemStorage.put(item);
             }
             object.put("interventions",itemStorage);

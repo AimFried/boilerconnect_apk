@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">BoilerConnect</string>
-    <string name="url_api">http://192.168.137.1:80/public/api/interventions</string>
+    <string name="url_api">http://boilerconnect.ddns.net/api/interventions</string>
 </resources>
