@@ -1,4 +1,6 @@
-![alt text](http://boilerconnect.ddns.net/logo.png)
+<div align="center">
+ ![alt text](http://boilerconnect.ddns.net/logo.png)
+</div>
 
 # BoilerConnect - Version Mobile (Android)
 
