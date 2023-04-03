@@ -1,3 +1,5 @@
+![alt text](http://boilerconnect.ddns.net/logo.png)
+
 # BoilerConnect - Version Mobile (Android)
 
 <strong>Application Mobile</strong> permettant de réalisé un rapport d'intervention et de pouvoir le stocker sur un serveur.
