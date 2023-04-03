@@ -2,7 +2,12 @@
 
 <strong>Application Mobile</strong> permettant de réalisé un rapport d'intervention et de pouvoir le stocker sur un serveur.
 
-Une <strong>version Web</strong> est dédié à consultation des interventions enregistrées. <br >
+Télécharger l'APK ou générer le directement depuis Android Studio.
+```bash
+http://boilerconnect.ddns.net/BoilerConnect.apk
+```
+
+Une <strong>version Web</strong> existe, elle est dédié à consultation des interventions enregistrées. <br >
 Lien : https://www.github.com/aimfried/boilerconnect_web
 
 
