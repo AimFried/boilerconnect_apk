@@ -1,42 +1,57 @@
 <div align="center">
-   <img src="http://boilerconnect.ddns.net/logo.png" alt="BoilerConnect Logo" width="100" height="100">
-   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Android_robot.png/756px-Android_robot.png" alt="Android Logo" width="80" height="90">
+    <img src="http://boilerconnect.ddns.net/logo.png" alt="Logo" width="100" height="100">
+
+  <h3 align="center">BoilerConnect</h3>
+
+  <p align="center">
+    Gestionnaire de raport d'intervention pour des chaudières.
+    <br />
+    <a href="https://github.com/AimFried/boilerconnect_web"><strong>Documentation</strong></a>
+    <br />
+    <br />
+    <p align="center">Supports</p>
+    <a href="https://github.com/AimFried/boilerconnect_web">Web</a>
+    ·
+    <a href="https://github.com/AimFried/boilerconnect_api">API</a>
+    ·
+    <a href="https://github.com/AimFried/boilerconnect_apk">Android</a>
+  </p>
 </div>
-   
-# BoilerConnect - Version Mobile (Android)
 
-<strong>Application Mobile</strong> permettant de réalisé un rapport d'intervention et de pouvoir le stocker sur un serveur.
+# Version Android
 
-Télécharger l'APK ou générer le directement depuis Android Studio.
-```bash
-http://boilerconnect.ddns.net/BoilerConnect.apk
-```
-
-Une <strong>version Web</strong> existe, elle est dédié à consultation des interventions enregistrées. <br >
-Lien : https://www.github.com/aimfried/boilerconnect_web
+Cette version permet l'enregistrement et l'envoi de rapport d'intervention.
 
 ## 📦 Prérequis
 
-Avoir au prélable installer l'API BoilerConnect. <br >
-Lien : https://www.github.com/aimfried/boilerconnect_api
+1. Avoir au prélable installer l'<a href="https://github.com/AimFried/boilerconnect_api">API</a> BoilerConnect. <br >
+2. Avoir installer la version <a href="https://github.com/AimFried/boilerconnect_web">Web</a>.
 
 ## :bookmark_tabs: Installation
 
-Télécharger le dépot. <br >
-Générer votre APK après avoir correctement configurer votre application Mobile.
+1. Télécharger le dépot <br >
+2. Deux choix possible pour utiliser l'application Android
+   * Télécharger l'APK
+   ```bash
+   http://boilerconnect.ddns.net/BoilerConnect.apk
+   ```
+      ou
+      
+   * Générer l'APK sur Android Studio
 
 ## 🛠️ Configuration
 
-- Ne pas oubliez de changer l'url de l'API dans les fichiers suivant : <br >
+Connection à l'API : En fonction de vos besoins, vous pouvez changer l'url utilisée.
+(par défaut: boilerconnect.ddns.net)
 
-Remplacer le nom de domaine par le votre.
-```bash
-/app/src/main/res/values/string/xml
- ```
-Autoriser l'utilisation de votre nom de domaine.
-```bash
-/app/src/main/res/values/xml/network_security_config.xml
- ```
+* Nom de domaine.
+   ```bash
+   /app/src/main/res/values/string/xml
+   ```
+* Autorisation nom de domaine.
+   ```bash
+   /app/src/main/res/values/xml/network_security_config.xml
+    ```
  
 ## 🤠 Auteur
 
