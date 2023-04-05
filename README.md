@@ -55,4 +55,4 @@ Connection à l'API : En fonction de vos besoins, vous pouvez changer l'url util
  
 ## 🤠 Auteur
 
-- [@aimfried](https://www.github.com/aimfried])
+- [@aimfried](https://www.github.com/AimFried])
