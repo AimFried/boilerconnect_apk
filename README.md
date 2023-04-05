@@ -25,7 +25,7 @@ Cette version permet l'enregistrement et l'envoi de rapport d'intervention.
 ## 📦 Prérequis
 
 1. Avoir au préalable installé l'<a href="https://github.com/AimFried/boilerconnect_api">API</a> BoilerConnect. <br >
-2. Avoir installer la version <a href="https://github.com/AimFried/boilerconnect_web">Web</a>.
+2. Avoir installé la version <a href="https://github.com/AimFried/boilerconnect_web">Web</a>.
 
 ## :bookmark_tabs: Installation
 
