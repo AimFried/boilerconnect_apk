@@ -4,7 +4,7 @@
   <h3 align="center">BoilerConnect</h3>
 
   <p align="center">
-    Gestionnaire de raport d'intervention pour des chaudières.
+    Système de gestion de rapports d'intervention pour chaudières
     <br />
     <a href="https://github.com/AimFried/boilerconnect_web"><strong>Documentation</strong></a>
     <br />
@@ -24,7 +24,7 @@ Cette version permet l'enregistrement et l'envoi de rapport d'intervention.
 
 ## 📦 Prérequis
 
-1. Avoir au prélable installer l'<a href="https://github.com/AimFried/boilerconnect_api">API</a> BoilerConnect. <br >
+1. Avoir au préalable installé l'<a href="https://github.com/AimFried/boilerconnect_api">API</a> BoilerConnect. <br >
 2. Avoir installer la version <a href="https://github.com/AimFried/boilerconnect_web">Web</a>.
 
 ## :bookmark_tabs: Installation
