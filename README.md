@@ -1,34 +1,58 @@
-# BoilerConnect - Version Mobile (Android)
+<div align="center">
+    <img src="http://boilerconnect.ddns.net/logo.png" alt="Logo" width="100" height="100">
 
-<strong>Application Mobile</strong> permettant de réalisé un rapport d'intervention et de pouvoir le stocker sur un serveur.
+  <h3 align="center">BoilerConnect</h3>
 
-Une <strong>version Web</strong> est dédié à consultation des interventions enregistrées. <br >
-Lien : https://www.github.com/aimfried/boilerconnect_web
+  <p align="center">
+    Système de gestion de rapports d'intervention pour chaudières
+    <br />
+    <a href="https://github.com/AimFried/boilerconnect_web"><strong>Documentation</strong></a>
+    <br />
+    <br />
+    <p align="center">Supports</p>
+    <a href="https://github.com/AimFried/boilerconnect_web">Web</a>
+    ·
+    <a href="https://github.com/AimFried/boilerconnect_api">API</a>
+    ·
+    <a href="https://github.com/AimFried/boilerconnect_apk">Android</a>
+  </p>
+</div>
 
+# Version Android
+
+Cette version permet l'enregistrement et l'envoi de rapport d'intervention.
 
 ## 📦 Prérequis
 
-Avoir au prélable installer l'API BoilerConnect. <br >
-Lien : https://www.github.com/aimfried/boilerconnect_api
+1. Avoir au préalable installé l'<a href="https://github.com/AimFried/boilerconnect_api">API</a> BoilerConnect. <br >
+2. Avoir installé la version <a href="https://github.com/AimFried/boilerconnect_web">Web</a>.
 
 ## :bookmark_tabs: Installation
 
-Télécharger le dépot. <br >
-Générer votre APK après avoir correctement configurer votre application Mobile.
+1. Télécharger le dépot <br >
+2. Deux choix possible pour utiliser l'application Android
+   * Télécharger l'APK
+   ```bash
+   http://boilerconnect.ddns.net/BoilerConnect.apk
+   ```
+      ou
+      
+   * Générer l'APK sur Android Studio
 
 ## 🛠️ Configuration
 
-- Ne pas oubliez de changer l'url de l'API dans les fichiers suivant : <br >
+Connection à l'API : En fonction de vos besoins, vous pouvez changer l'url utilisée.
+(par défaut: boilerconnect.ddns.net)
 
-Remplacer le nom de domaine par le votre.
-```bash
-/app/src/main/res/values/string/xml
- ```
-Autoriser l'utilisation de votre nom de domaine.
-```bash
-/app/src/main/res/values/xml/network_security_config.xml
- ```
+* Nom de domaine.
+   ```bash
+   /app/src/main/res/values/string/xml
+   ```
+* Autorisation nom de domaine.
+   ```bash
+   /app/src/main/res/values/xml/network_security_config.xml
+    ```
  
 ## 🤠 Auteur
 
-- [@aimfried](https://www.github.com/aimfried])
+- [@aimfried](https://www.github.com/AimFried])
