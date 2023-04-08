@@ -31,7 +31,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Array;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -137,10 +140,31 @@ public class MainActivity extends AppCompatActivity implements ReportListAdapter
         startActivity(modifyReport);
     }
 
+    public static String convertDate(String dateOrigine) {
+        SimpleDateFormat sdfOrigine = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            Date date = sdfOrigine.parse(dateOrigine);
+
+            SimpleDateFormat sdfCible = new SimpleDateFormat("yyyy/MM/dd");
+
+            String dateCible = sdfCible.format(date);
+
+            return dateCible;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void uploadInterventions() {
+        btnUpdateDatabase.setEnabled(false);
+        Toast loading = Toast.makeText(MainActivity.this, "Chargement", Toast.LENGTH_SHORT);
+        loading.show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         JSONArray itemStorage = new JSONArray();
         JSONObject object = new JSONObject();
+        int numberOfIntervention = (int) reportList.stream().count();
         try {
             int i;
             for(i = 0;i<reportList.stream().count();i++) {
@@ -151,8 +175,8 @@ public class MainActivity extends AppCompatActivity implements ReportListAdapter
                 item.put("address",reportList.get(i).getAddress());
                 item.put("brand",reportList.get(i).getBrand());
                 item.put("boiler",reportList.get(i).getBoiler());
-                item.put("dateEntryService",reportList.get(i).getDateEntryService());
-                item.put("dateIntervention",reportList.get(i).getDateIntervention());
+                item.put("dateEntryService",convertDate(reportList.get(i).getDateEntryService()));
+                item.put("dateIntervention",convertDate(reportList.get(i).getDateIntervention()));
                 item.put("serialNumber",reportList.get(i).getSerialNumber());
                 if(reportList.get(i).getDescription().isEmpty()){
                     item.put("description","Rien à signaler");
@@ -178,15 +202,24 @@ public class MainActivity extends AppCompatActivity implements ReportListAdapter
                         reportmanager.removeAllContact();
                         reportList.clear();
                         reportmanager.close();
+                        btnUpdateDatabase.setEnabled(true);
 
                         Intent restartActivity = new Intent(MainActivity.this, MainActivity.class);
                         startActivity(restartActivity);
 
-                        Toast.makeText(MainActivity.this, "Intervention(s) envoyée(s) !", Toast.LENGTH_SHORT).show();
+                        loading.cancel();
+                        if(numberOfIntervention > 1) {
+                            Toast.makeText(MainActivity.this, "Envoyées !", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Envoyée !", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                btnUpdateDatabase.setEnabled(true);
+                loading.cancel();
                 Toast.makeText(MainActivity.this, "Connexion indisponible !", Toast.LENGTH_SHORT).show();
                 System.out.println(error);
             }

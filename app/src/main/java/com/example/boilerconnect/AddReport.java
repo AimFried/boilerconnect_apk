@@ -191,7 +191,7 @@ public class AddReport extends AppCompatActivity {
 
                     reportmanager.close();
 
-                    Toast.makeText(AddReport.this, "Intervention enregistrée", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddReport.this, "Rapport enregistré", Toast.LENGTH_SHORT).show();
                     AddReport.this.finish();
                 } else {
                     Toast.makeText(AddReport.this, "Votre saisie est incorrect !", Toast.LENGTH_SHORT).show();

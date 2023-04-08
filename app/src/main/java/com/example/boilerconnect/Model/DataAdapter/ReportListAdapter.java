@@ -33,8 +33,8 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, int position) {
         Report theReport = mData.get(position);
         holder.thisSerialNumber.setText(theReport.getSerialNumber());
-        holder.thisDateIntervention.setText(theReport.getDateIntervention());
-        holder.thisDateEntryService.setText(theReport.getDateEntryService());
+        holder.thisDateIntervention.setText("Fait le " + theReport.getDateIntervention());
+        holder.thisDateEntryService.setText("En service le " + theReport.getDateEntryService());
         holder.thisName.setText(theReport.getName());
         holder.thisSurname.setText(theReport.getSurname());
     }

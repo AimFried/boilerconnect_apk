@@ -211,7 +211,7 @@ public class ModifyReport extends AppCompatActivity {
                     reportmanager.updateReport(updateReport);
 
                     reportmanager.close();
-                    Toast.makeText(ModifyReport.this, "Intervention modifiée", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ModifyReport.this, "Rapport modifié", Toast.LENGTH_SHORT).show();
                     ModifyReport.this.finish();
                 } else {
                     Toast.makeText(ModifyReport.this, "Votre saisie est incorrect !", Toast.LENGTH_SHORT).show();
@@ -264,7 +264,7 @@ public class ModifyReport extends AppCompatActivity {
 
                 reportmanager.close();
 
-                Toast.makeText(ModifyReport.this, "Intervention supprimée !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ModifyReport.this, "Rapport supprimé !", Toast.LENGTH_SHORT).show();
 
                 ModifyReport.this.finish();
             }
