@@ -57,8 +57,6 @@ public class MainActivity extends AppCompatActivity implements ReportListAdapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         btnUpdateDatabase = (Button) findViewById(R.id._btn_update_database);
 
         reportmanager = new ReportManager(this);
@@ -67,8 +65,11 @@ public class MainActivity extends AppCompatActivity implements ReportListAdapter
 
         reportList = reportmanager.getReports();
 
-        setTitle(reportList.stream().count() + " interventions en cours");
-
+        if(reportList.stream().count() > 1) {
+            setTitle(reportList.stream().count() + " interventions en cours");
+        } else {
+            setTitle(reportList.stream().count() + " intervention en cours");
+        }
 
         if(reportList.isEmpty()) {
             btnUpdateDatabase.setEnabled(false);
