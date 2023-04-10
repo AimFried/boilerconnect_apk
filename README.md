@@ -6,7 +6,7 @@
   <p align="center">
     Système de gestion de rapports d'intervention pour chaudières
     <br />
-    <a href="https://github.com/AimFried/boilerconnect_web"><strong>Documentation</strong></a>
+    <a href="https://drive.google.com/drive/folders/1pocVKzrKxUJeOKoWazV7Zrlh0SxABBp_?usp=share_link"><strong>Documentation</strong></a>
     <br />
     <br />
     <p align="center">Supports</p>
