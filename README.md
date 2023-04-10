@@ -29,7 +29,7 @@ Cette version permet l'enregistrement et l'envoi de rapport d'intervention.
 
 ## :bookmark_tabs: Installation
 
-1. Télécharger le dépot <br >
+1. Télécharger le dépôt <br >
 2. Deux choix possible pour utiliser l'application Android
    * Télécharger l'APK
    ```bash
